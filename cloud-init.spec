@@ -36,6 +36,7 @@ Requires:       libselinux-python
 Requires:       net-tools
 Requires:       policycoreutils-python
 Requires:       procps
+Requires:       python-argparse
 %if 0%{?rhel} >= 6
 Requires:       python-boto
 Requires:       python-cheetah
