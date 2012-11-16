@@ -5,7 +5,7 @@
 
 Name:           cloud-init
 Version:        0.7.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Cloud instance init scripts
 
 Group:          System Environment/Base
@@ -15,6 +15,7 @@ Source0:        https://launchpad.net/cloud-init/trunk/%{version}/+download/clou
 Source1:        cloud-init-rhel.cfg
 Source2:        cloud-init-README.fedora
 Patch0:         cloud-init-0.7.0-fedora.patch
+Patch999:       cloud-init-0.7.1-rhel.patch
 
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -63,6 +64,7 @@ ssh keys and to let the user run various scripts.
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1
+%patch999 -p1
 
 cp -p %{SOURCE2} README.fedora
 
@@ -135,6 +137,11 @@ fi
 
 
 %changelog
+* Fri Nov 16 2012 Alan Pevec <apevec@redhat.com> 0.7.1-2
+- define default user (Joe VLcek)
+- set distro to rhel in default config
+- adjust logger call for older util-linux
+
 * Wed Nov 14 2012 Alan Pevec <apevec@redhat.com> 0.7.1-1
 - Update to 0.7.1
 
